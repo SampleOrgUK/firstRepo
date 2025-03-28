@@ -28,13 +28,13 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Set repo secret
-        run: echo "$SECRET_TEST_REPO" ＞ key_repo ＆＆ chmod 600 key_repo
+        run: echo "$SECRET_TEST_REPO" > key_repo && chmod 600 key_repo
         env:
           SECRET_TEST_REPO: ${{ secrets.SECRET_TEST_REPO }}
 
       # Runs a set of commands using the runners shell
       - name: Set org secret
-        run: echo "$SECRET_TEST_ORG" ＞ key_org ＆＆ chmod 600 key_org
+        run: echo "$SECRET_TEST_ORG" > key_org && chmod 600 key_org
         env:
           SECRET_TEST_ORG: ${{ secrets.SECRET_TEST_ORG }}
 
