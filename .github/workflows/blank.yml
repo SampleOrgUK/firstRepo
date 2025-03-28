@@ -19,7 +19,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     # runs-on: [self-hosted, my-label]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -27,7 +27,19 @@ jobs:
       - uses: actions/checkout@v4
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set repo secret
+        run: echo "$SECRET_TEST_REPO" ＞ key_repo ＆＆ chmod 600 key_repo
+        env:
+          SECRET_TEST_REPO: ${{ secrets.SECRET_TEST_REPO }}
+
+      # Runs a set of commands using the runners shell
+      - name: Set org secret
+        run: echo "$SECRET_TEST_ORG" ＞ key_org ＆＆ chmod 600 key_org
+        env:
+          SECRET_TEST_ORG: ${{ secrets.SECRET_TEST_ORG }}
+
+      # Runs a set of commands using the runners shell
+      - name: Echo
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          cat key_repo
+          cat key_org
